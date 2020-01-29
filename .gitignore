@@ -2,6 +2,7 @@ PRESENT/PRESENT.cache/*
 PRESENT/PRESENT.hw/*
 PRESENT/PRESENT.ip_user_files/*
 *.xpr
+*.log
 
 # intermediate build files
 *.bgn

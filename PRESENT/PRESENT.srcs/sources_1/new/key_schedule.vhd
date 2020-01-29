@@ -2,8 +2,8 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
 entity key_schedule is
-    Port ( keyIn : in STD_LOGIC_VECTOR(127 downto 0);
-           keyOut : out STD_LOGIC_VECTOR(127 downto 0);
+    Port ( keyIn : in STD_LOGIC_VECTOR(79 downto 0);
+           keyOut : out STD_LOGIC_VECTOR(79 downto 0);
            round_counter : in STD_LOGIC_VECTOR(4 downto 0)); --5 bits so that 31 rounds can be counted
 end key_schedule;
 
@@ -20,7 +20,7 @@ component sbox
 
 begin
 
-process(keyIn)
+process(keyIn, rotated_key)
     begin
     rotated_key <= keyIn(18 downto 0) & keyIn(79 downto 19);
      
