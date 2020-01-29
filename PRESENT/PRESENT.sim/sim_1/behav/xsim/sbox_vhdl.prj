@@ -1,6 +1,0 @@
-# compile vhdl design source files
-vhdl xil_defaultlib  \
-"../../../../PRESENT.srcs/sources_1/new/sbox.vhd" \
-
-# Do not sort compile order
-nosort

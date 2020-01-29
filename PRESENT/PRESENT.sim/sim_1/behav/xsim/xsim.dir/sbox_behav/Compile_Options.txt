@@ -1,1 +1,0 @@
--wto "130806f43e954a729c856575780448ea" --incr --debug "typical" --relax --mt "2" -L "xil_defaultlib" -L "secureip" --snapshot "sbox_behav" "xil_defaultlib.sbox" -log "elaborate.log" 
