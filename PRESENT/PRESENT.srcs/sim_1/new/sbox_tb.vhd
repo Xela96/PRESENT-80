@@ -24,7 +24,7 @@ begin
                   dataOut => outData
                   );
                   
-    KS_proc: process
+    sbox_proc: process
     begin
         inData <= x"0";
         wait for 10ns;

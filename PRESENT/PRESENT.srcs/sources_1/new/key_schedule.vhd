@@ -1,15 +1,16 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use work.constants.all;
 
 entity key_schedule is
-    Port ( keyIn : in STD_LOGIC_VECTOR(79 downto 0);
-           keyOut : out STD_LOGIC_VECTOR(79 downto 0);
+    Port ( keyIn : in STD_LOGIC_VECTOR(keyLength-1 downto 0);
+           keyOut : out STD_LOGIC_VECTOR(keyLength-1 downto 0);
            round_counter : in STD_LOGIC_VECTOR(4 downto 0)); --5 bits so that 31 rounds can be counted
 end key_schedule;
 
 architecture Behavioral of key_schedule is
 
-signal rotated_key : STD_LOGIC_VECTOR(79 downto 0);
+signal rotated_key : STD_LOGIC_VECTOR(keyLength-1 downto 0);
 
 component sbox
         Port( 
