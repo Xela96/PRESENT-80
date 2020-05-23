@@ -99,7 +99,7 @@ PL: pLayer
                     when "00000" => textOut <= text_rKey_added;
                     when others => textOut <= (others => '0');
                 end case;
-            end if;
+            end if; 
                         
         end if;
     end process;
