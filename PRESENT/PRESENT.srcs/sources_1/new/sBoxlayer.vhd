@@ -1,7 +1,7 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-use work.constants.all;
-
+use work.constants.all; 
+ 
 entity sBoxlayer is
   Port ( textIn : in STD_LOGIC_VECTOR (messageLength-1 downto 0);
          textOut: out STD_LOGIC_VECTOR (messageLength-1 downto 0)

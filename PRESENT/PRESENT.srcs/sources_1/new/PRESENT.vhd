@@ -1,13 +1,14 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
-use work.constants.all;
+use work.constants.all; 
 
 entity PRESENT is
     Port ( textIn : in STD_LOGIC_VECTOR (messageLength-1 downto 0);
            textOut : out STD_LOGIC_VECTOR (messageLength-1 downto 0);
            key : in STD_LOGIC_VECTOR (keyLength-1 downto 0);
            clock : in STD_LOGIC;
+           load : in STD_LOGIC;
            reset : in STD_LOGIC
            );
 end PRESENT;
@@ -46,7 +47,7 @@ architecture Behavioral of PRESENT is
     signal next_sbox_state : STD_LOGIC_VECTOR(messageLength-1 downto 0);
     signal next_pLayer_state : STD_LOGIC_VECTOR(messageLength-1 downto 0);  
     
-    signal inText : STD_LOGIC_VECTOR(messageLength-1 downto 0); 
+    signal inText : STD_LOGIC_VECTOR(messageLength-1 downto 0);
     
     signal text_rKey_added : STD_LOGIC_VECTOR(messageLength-1 downto 0); 
 
@@ -72,29 +73,21 @@ PL: pLayer
                   );          
             
             
-    text_rKey_added <= inText XOR key_s(79 downto 16); --inText value is incorrect so fix that      
+    text_rKey_added <= inText XOR key_s(79 downto 16);
                       
     process( clock)
-    begin
-        
-        
+    begin                
         if rising_edge(clock) then
             if reset='1' then
                 round_counter <= "00001";
                 inText <= textIn;
                 key_s <= key;
                 textOut <= (others => '0');
-            else
+            elsif load = '1' then
                 inText <= next_pLayer_state;
                 key_s <= next_key;
                 round_counter <= std_logic_vector(unsigned(round_counter)+1);
---                if round_counter /="00000" then
-----                    textOut <= (others => '0');
-----                else
---                    textOut <= text_rKey_added;
---                end if;
-                
-                
+                             
                  case round_counter is
                     when "00000" => textOut <= text_rKey_added;
                     when others => textOut <= (others => '0');
@@ -105,3 +98,8 @@ PL: pLayer
     end process;
 
 end Behavioral;
+--                if round_counter /="00000" then
+----                    textOut <= (others => '0');
+----                else
+--                    textOut <= text_rKey_added;
+--                end if;
