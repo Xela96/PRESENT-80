@@ -1,7 +1,7 @@
-library IEEE;
+library IEEE; 
 use IEEE.STD_LOGIC_1164.ALL;
-use work.constants.all;
-
+use work.constants.all; 
+ 
 entity key_schedule is
     Port ( keyIn : in STD_LOGIC_VECTOR(keyLength-1 downto 0);
            keyOut : out STD_LOGIC_VECTOR(keyLength-1 downto 0);
